@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GabInvest - Smart Investment Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">GabInvest</h1>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#investments">Investments</a>
+                <a href="#dashboard" id="dashboardLink" style="display:none;">Dashboard</a>
+                <button id="loginBtn" class="btn-primary">Login</button>
+                <button id="signupBtn" class="btn-secondary">Sign Up</button>
+                <button id="logoutBtn" class="btn-primary" style="display:none;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Welcome Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Start Your Investment Journey</h1>
+                <p>Get ₦1,000 welcome bonus when you sign up today!</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <h3>15%</h3>
+                        <p>Average Returns</p>
+                    </div>
+                    <div class="stat">
+                        <h3>₦1,000</h3>
+                        <p>Welcome Bonus</p>
+                    </div>
+                    <div class="stat">
+                        <h3>24/7</h3>
+                        <p>Support</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Investment Plans -->
+        <section id="investments" class="investments">
+            <h2>Investment Plans</h2>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3>Starter Plan</h3>
+                    <div class="plan-return">12% Monthly</div>
+                    <div class="plan-details">
+                        <p>Minimum: ₦5,000</p>
+                        <p>Duration: 30 days</p>
+                        <p>Risk: Low</p>
+                    </div>
+                    <button class="invest-btn" data-plan="starter">Invest Now</button>
+                </div>
+                
+                <div class="plan-card featured">
+                    <h3>Premium Plan</h3>
+                    <div class="plan-return">18% Monthly</div>
+                    <div class="plan-details">
+                        <p>Minimum: ₦20,000</p>
+                        <p>Duration: 60 days</p>
+                        <p>Risk: Medium</p>
+                    </div>
+                    <button class="invest-btn" data-plan="premium">Invest Now</button>
+                </div>
+                
+                <div class="plan-card">
+                    <h3>Elite Plan</h3>
+                    <div class="plan-return">25% Monthly</div>
+                    <div class="plan-details">
+                        <p>Minimum: ₦100,000</p>
+                        <p>Duration: 90 days</p>
+                        <p>Risk: High</p>
+                    </div>
+                    <button class="invest-btn" data-plan="elite">Invest Now</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Dashboard -->
+        <section id="dashboard" class="dashboard" style="display:none;">
+            <h2>Your Dashboard</h2>
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Account Balance</h3>
+                    <div class="balance" id="userBalance">₦1,000</div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Total Invested</h3>
+                    <div class="balance" id="totalInvested">₦0</div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Total Returns</h3>
+                    <div class="balance" id="totalReturns">₦0</div>
+                </div>
+            </div>
+            
+            <div class="investment-form">
+                <h3>Make Investment</h3>
+                <select id="investmentPlan">
+                    <option value="starter">Starter Plan (12%)</option>
+                    <option value="premium">Premium Plan (18%)</option>
+                    <option value="elite">Elite Plan (25%)</option>
+                </select>
+                <input type="number" id="investmentAmount" placeholder="Amount (₦)" min="5000">
+                <button id="makeInvestmentBtn" class="btn-primary">Invest Now</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h2>Sign Up & Get ₦1,000 Bonus!</h2>
+            <form id="signupForm">
+                <input type="text" id="signupName" placeholder="Full Name" required>
+                <input type="email" id="signupEmail" placeholder="Email" required>
+                <input type="tel" id="signupPhone" placeholder="Phone Number" required>
+                <input type="password" id="signupPassword" placeholder="Password" required>
+                <button type="submit" class="btn-primary">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h2>Make Payment</h2>
+            <div class="payment-info">
+                <h3>Bank Details:</h3>
+                <p><strong>Account Name:</strong> Ibunkun Elijah Abiodun</p>
+                <p><strong>Account Number:</strong> 7019705443</p>
+                <p><strong>Bank:</strong> Palmpay</p>
+                <p><strong>Amount:</strong> <span id="paymentAmount"></span></p>
+            </div>
+            <p class="payment-note">Please make payment to the above account and upload proof of payment.</p>
+            <input type="file" id="paymentProof" accept="image/*">
+            <button id="confirmPaymentBtn" class="btn-primary">Confirm Payment</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
